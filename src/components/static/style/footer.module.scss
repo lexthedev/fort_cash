@@ -1,0 +1,11 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+
+    margin-top: 10px;
+    padding: 10px;
+    // background: linear-gradient(to left, #ff0d0d, #0e1eaf 50%, #eee 75%, #16d485 75%);
+    background: linear-gradient(to bottom, rgb(var(--background-end-rgb)), rgb(15, 0, 34));
+}
