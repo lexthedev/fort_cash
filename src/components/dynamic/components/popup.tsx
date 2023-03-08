@@ -7,7 +7,8 @@ export function Popup(props: IPopup) {
     return <div
         onClick={onClose}
         className={styles.popup}>
-        <div className={styles.modal}>
+        <div className={styles.modal}
+            onClick={(e) => e.stopPropagation()}>
             <button className={styles.close} onClick={onClose}>X</button>
             <div className={styles.content}>{children}</div>
         </div>
