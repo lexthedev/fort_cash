@@ -25,6 +25,9 @@ export const balanceSlice = createSlice({
         },
         incrementSpent(state, action: PayloadAction<number>) {
             state.wallet.spent += action.payload;
+        },
+        setBalance(state, action: PayloadAction<IWalletState>) {
+            state.wallet = action.payload;
         }
     }
 })
