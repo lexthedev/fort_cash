@@ -1,6 +1,6 @@
 import { ITransferInput } from "@/components";
 import { transferTypes } from "@/constants/transferTypes";
-import { balanceSlice, useAppDispatch } from "@/redux";
+import { balanceSlice, transactionSlice, useAppDispatch, useAppSelector } from "@/redux";
 import { useState } from "react";
 
 export const TransferInput = (props: ITransferInput) => {
@@ -9,6 +9,8 @@ export const TransferInput = (props: ITransferInput) => {
     const [value, setValue] = useState<number>();
     const [category, setCategory] = useState<string>();
     const { incrementIncome, incrementSpent } = balanceSlice.actions;
+    const { addTransaction } = transactionSlice.actions;
+    const { income, outcome } = useAppSelector(state => state.categoryReducer.categories)
     const dispatch = useAppDispatch();
 
     function close() {
@@ -18,13 +20,19 @@ export const TransferInput = (props: ITransferInput) => {
     function increment() {
 
         if (value && value > 0) {
+            dispatch(addTransaction({
+                amount: value,
+                category: category as string,
+                type: type
+            }))
+
             switch (type) {
                 case transferTypes.income:
-                    dispatch(incrementIncome(value));
+                    dispatch(incrementIncome(value))
                     break;
 
-                case transferTypes.spent:
-                    dispatch(incrementSpent(value));
+                case transferTypes.outcome:
+                    dispatch(incrementSpent(value))
                     break;
 
                 default:
@@ -32,6 +40,8 @@ export const TransferInput = (props: ITransferInput) => {
             }
 
             close();
+        } else {
+
         }
     }
 
@@ -51,6 +61,10 @@ export const TransferInput = (props: ITransferInput) => {
         }
     }
 
+    const categories = type === transferTypes.income ? income : outcome;
+    console.log('cat', categories);
+
+
     return <div onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)}>
         <div>
             <div>
@@ -65,11 +79,10 @@ export const TransferInput = (props: ITransferInput) => {
 
             <div>
                 <label htmlFor="TransferInput-input-category">enter category</label>
-                <select onChange={(e) => setCategory(e.target.value)} name="TransferInput-input-category" id="TransferInput-input-category">
-                    <option value="car">car</option>
-                    <option value="meal">meal</option>
-                    <option value="medicine">medicine</option>
-                    <option value="wife">wife</option>
+                <select onChange={(e) => setCategory(e.target.value)}
+                    name="TransferInput-input-category"
+                    id="TransferInput-input-category">
+                    {categories.map(({ title }) => <option key={title} value={title}>{title}</option>)}
                 </select>
             </div>
         </div>
