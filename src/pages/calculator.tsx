@@ -1,7 +1,7 @@
 import { transferTypes } from "@/constants/transferTypes";
 import { useAppSelector } from "@/redux";
 import React, { useState } from "react"
-import { CreateCategory, DynamicHead, Footer, Popup, TransferInput } from '../components/index'
+import { CreateCategory, DynamicBody, DynamicHead, Footer, Popup, SideMenu, TransferInput } from '../components/index'
 
 export default function Calculator() {
 
@@ -13,8 +13,7 @@ export default function Calculator() {
 
     const { income, spent } = useAppSelector(state => state.balanceReduser.wallet)
 
-    return <>
-        <DynamicHead />
+    const content = <>
         <div>
             <div>income: {income}</div>
             <div>balance: {income - spent}</div>
@@ -23,20 +22,26 @@ export default function Calculator() {
         <button onClick={() => { setCurrentTransfer(transferTypes.income) }}>income</button>
         <button onClick={() => { setCurrentTransfer(transferTypes.outcome) }}>spent</button>
         <button onClick={() => setCreatingCategory(true)}>create category</button>
+    </>
+
+    return <>
+        <DynamicHead />
+        <DynamicBody>
+            {content}
+        </DynamicBody>
         {currentTransfer &&
             <Popup
-                onClose={() => setCurrentTransfer(false)}>
-                <h2>New {currentTransfer}</h2>
+                onClose={() => setCurrentTransfer(false)}
+                title={`New ${currentTransfer}`}>
                 <TransferInput
                     type={currentTransfer as transferTypes}
                     onClose={() => setCurrentTransfer(false)} />
             </Popup>}
         {creatingCategory &&
             <Popup
-                onClose={() => setCreatingCategory(false)}>
-                <h2>New category</h2>
+                onClose={() => setCreatingCategory(false)}
+                title={`New ${currentTransfer}`}>
                 <CreateCategory onClose={() => setCreatingCategory(false)} />
             </Popup>}
-        <Footer />
     </>
 };

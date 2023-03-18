@@ -1,17 +1,22 @@
-import { ICategory, ICategoryCreateForm } from "@/components";
+import { ICategory, ICategoryCreateForm, PopUpAction } from "@/components";
 import { transferTypes } from "@/constants/transferTypes";
 import { useAppDispatch } from "@/redux";
 import { categorySlice } from "@/redux/reducers/categoryReducer";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export function CreateCategory(props: ICategoryCreateForm) {
 
-    const {onClose} = props;
-    const [category, setCategory] = useState<ICategory>({} as ICategory)
+    const { onClose, creatingCategory } = props;
+    const [category, setCategory] = useState<ICategory>(
+        {
+            title: '',
+            type: creatingCategory as transferTypes,
+            picture: ''
+        });
     const { create } = categorySlice.actions;
     const dispatch = useAppDispatch();
 
-    function createCategory(event: FormEvent) {
+    function createCategory(event: MouseEvent) {
         event.preventDefault();
         dispatch(create(category));
         onClose();
@@ -27,7 +32,7 @@ export function CreateCategory(props: ICategoryCreateForm) {
 
     }
 
-    function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {
+    function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {        
         switch (event.key) {
             case 'Enter':
                 dispatch(create(category));
@@ -43,31 +48,32 @@ export function CreateCategory(props: ICategoryCreateForm) {
         }
     }
 
-    return <div onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)}    >
-        <form onSubmit={(e) => createCategory(e)}>
-            <div>
-                <label>
-                    enter name:
-                    <input type="text" name="title" onChange={(e) => handleInput(e)} />
-                </label>
-            </div>
-            <div>
-                <label>
-                    enter type:
-                    <select name="type" defaultValue={'-'} onChange={(e) => handleInput(e)}>
-                        <option value="-" disabled>-</option>
-                        {Object.keys(transferTypes).map(key => (
-                            <option key={key} value={key}>
-                                {transferTypes[key as transferTypes]}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-            </div>
-            <div>
-                <button type="submit" onClick={(e) => createCategory(e)}>ok</button>
-                <button onClick={() => onClose()}>cancel</button>
-            </div>
-        </form>
+    return <div onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)} >
+        <div>
+            <label>
+                enter name:
+                <input type="text" name="title" onChange={(e) => handleInput(e)} />
+            </label>
+        </div>
+        {!creatingCategory && <div>
+            <label>
+                enter type:
+                <select
+                    name="type"
+                    defaultValue={creatingCategory ? creatingCategory : '-'}
+                    onChange={(e) => handleInput(e)}
+                >
+                    <option value="-" disabled>-</option>
+                    {Object.keys(transferTypes).map(key => (
+                        <option key={key} value={key}>
+                            {transferTypes[key as transferTypes]}
+                        </option>
+                    ))}
+                </select>
+            </label>
+        </div>}
+        <PopUpAction
+            onSubmit={(e) => createCategory(e)}
+            onCancel={() => onClose()} />
     </div>
 }
