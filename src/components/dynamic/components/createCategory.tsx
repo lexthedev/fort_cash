@@ -13,12 +13,12 @@ export function CreateCategory(props: ICategoryCreateForm) {
             type: creatingCategory as transferTypes,
             picture: ''
         });
-    const { create } = categorySlice.actions;
+    const { createCategory } = categorySlice.actions;
     const dispatch = useAppDispatch();
 
-    function createCategory(event: MouseEvent) {
+    function createNewCategory(event: MouseEvent) {
         event.preventDefault();
-        dispatch(create(category));
+        dispatch(createCategory(category));
         onClose();
     }
 
@@ -73,7 +73,7 @@ export function CreateCategory(props: ICategoryCreateForm) {
             </label>
         </div>}
         <PopUpAction
-            onSubmit={(e) => createCategory(e)}
+            onSubmit={(e) => createNewCategory(e)}
             onCancel={() => onClose()} />
     </div>
 }

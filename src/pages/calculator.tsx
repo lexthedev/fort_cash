@@ -1,17 +1,24 @@
 import { transferTypes } from "@/constants/transferTypes";
-import { useAppSelector } from "@/redux";
-import React, { useState } from "react"
-import { CreateCategory, DynamicBody, DynamicHead, Footer, Popup, SideMenu, TransferInput } from '../components/index'
+import { transactionSlice, useAppDispatch, useAppSelector } from "@/redux";
+import { categorySlice } from "@/redux/reducers/categoryReducer";
+import { LocalStoreService } from "@/redux/services/localStoreService";
+import WalletCalculator from "@/redux/services/walletCalculator";
+import React, { useEffect, useState } from "react"
+import { DynamicBody, DynamicHead, Popup, TransferInput } from '../components/index'
 
 export default function Calculator() {
 
-    // const [income, setIncome] = useState<number>(0);
-    // const [spent, setSpent] = useState<number>(0);
-    // const [balance, setBalance] = useState<number>(0);
     const [currentTransfer, setCurrentTransfer] = useState<transferTypes | boolean>();
-    const [creatingCategory, setCreatingCategory] = useState<boolean>(false);
 
-    const { income, spent } = useAppSelector(state => state.balanceReduser.wallet)
+    const { transactions } = useAppSelector(state => state.transactionsReducer)
+    // const { setTransactions } = transactionSlice.actions;
+    // const { setCategories } = categorySlice.actions;
+    // const dispatch = useAppDispatch();
+    // useEffect(() => {
+    //     dispatch(setTransactions(LocalStoreService.GetFromStore('transactions')));
+    //     dispatch(setCategories(LocalStoreService.GetFromStore('categories')));
+    // }, [])
+    const { income, spent } = WalletCalculator.countBalance(transactions);
 
     const content = <>
         <div>
@@ -21,7 +28,6 @@ export default function Calculator() {
         </div>
         <button onClick={() => { setCurrentTransfer(transferTypes.income) }}>income</button>
         <button onClick={() => { setCurrentTransfer(transferTypes.outcome) }}>spent</button>
-        <button onClick={() => setCreatingCategory(true)}>create category</button>
     </>
 
     return <>
@@ -36,12 +42,6 @@ export default function Calculator() {
                 <TransferInput
                     type={currentTransfer as transferTypes}
                     onClose={() => setCurrentTransfer(false)} />
-            </Popup>}
-        {creatingCategory &&
-            <Popup
-                onClose={() => setCreatingCategory(false)}
-                title={`New ${currentTransfer}`}>
-                <CreateCategory onClose={() => setCreatingCategory(false)} />
             </Popup>}
     </>
 };

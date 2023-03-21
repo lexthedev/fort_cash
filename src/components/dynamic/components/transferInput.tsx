@@ -10,7 +10,8 @@ export const TransferInput = (props: ITransferInput) => {
     const [category, setCategory] = useState<string>();
     const { incrementIncome, incrementSpent } = balanceSlice.actions;
     const { addTransaction } = transactionSlice.actions;
-    const { income, outcome } = useAppSelector(state => state.categoryReducer.categories)
+    const { income, outcome } = useAppSelector(state => state.categoryReducer.categories);
+    
     const dispatch = useAppDispatch();
 
     function close() {
@@ -62,8 +63,6 @@ export const TransferInput = (props: ITransferInput) => {
     }
 
     const categories = type === transferTypes.income ? income : outcome;
-    console.log('cat', categories);
-
 
     return <div onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)}>
         <div>

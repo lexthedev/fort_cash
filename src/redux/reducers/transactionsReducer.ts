@@ -1,7 +1,7 @@
-import { transferTypes } from "@/constants/transferTypes";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { balanceSlice, Transaction } from "..";
-import WalletCalculator from "../services/walletCalculator";
+import { Transaction } from "..";
+import { IPayload } from "../models/localStorePayload";
+import { LocalStoreService } from "../services/localStoreService";
 
 interface TransactionState {
     transactions: Transaction[]
@@ -21,9 +21,20 @@ export const transactionSlice = createSlice({
     reducers: {
         addTransaction(state, action: PayloadAction<Transaction>) {
             state.transactions.push(action.payload);
+            const savePayload: IPayload = {
+                name: 'transactions',
+                data: state.transactions
+            }
+
+            LocalStoreService.SaveToStore(savePayload)
         },
         setTransactions(state, action: PayloadAction<Transaction[]>) {
-            state.transactions = action.payload;
+            if (!!action.payload) {
+                state.transactions = [
+                    ...state.transactions,
+                    ...action.payload
+                ];
+            }
         }
     }
 })
