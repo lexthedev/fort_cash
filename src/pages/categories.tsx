@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/redux"
 import { categorySlice } from "@/redux/reducers/categoryReducer";
 import { LocalStoreService } from "@/redux/services/localStoreService";
 import { useEffect, useState } from "react";
+// import * as categoryLogos from "../../public/static/img/categories/SVG"
 import styles from "./styles/categories.module.scss"
 
 export default function Categories() {

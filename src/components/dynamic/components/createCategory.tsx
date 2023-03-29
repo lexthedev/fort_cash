@@ -2,7 +2,9 @@ import { ICategory, ICategoryCreateForm, PopUpAction } from "@/components";
 import { transferTypes } from "@/constants/transferTypes";
 import { useAppDispatch } from "@/redux";
 import { categorySlice } from "@/redux/reducers/categoryReducer";
+import React from "react";
 import { ChangeEvent, useState } from "react";
+import CategoryIconSelector from "./calculator/categoryIconSelector";
 
 export function CreateCategory(props: ICategoryCreateForm) {
 
@@ -32,10 +34,10 @@ export function CreateCategory(props: ICategoryCreateForm) {
 
     }
 
-    function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {        
+    function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {
         switch (event.key) {
             case 'Enter':
-                dispatch(create(category));
+                dispatch(createCategory(category));
                 onClose();
                 break;
 
@@ -48,16 +50,23 @@ export function CreateCategory(props: ICategoryCreateForm) {
         }
     }
 
+    function handleSelectIcon(src: string) {
+        setCategory({
+            ...category,
+            picture: src
+        })
+    }
+
     return <div onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)} >
         <div>
             <label>
-                enter name:
+                enter name:&nbsp;
                 <input type="text" name="title" onChange={(e) => handleInput(e)} />
             </label>
         </div>
         {!creatingCategory && <div>
             <label>
-                enter type:
+                enter type:&nbsp;
                 <select
                     name="type"
                     defaultValue={creatingCategory ? creatingCategory : '-'}
@@ -72,6 +81,7 @@ export function CreateCategory(props: ICategoryCreateForm) {
                 </select>
             </label>
         </div>}
+        <CategoryIconSelector onSelect={handleSelectIcon} selected={category.picture} />
         <PopUpAction
             onSubmit={(e) => createNewCategory(e)}
             onCancel={() => onClose()} />

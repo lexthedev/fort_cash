@@ -1,0 +1,32 @@
+.iconSelector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .iconSet {
+        display: grid;
+        grid-template-columns: repeat(6, 35px);
+        gap: 5px;
+        margin: 10px;
+
+        .icon {
+            background-color: #888888;
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.selected {
+                background-color: #cccccc;
+                border: 1px solid #aaaaaa;
+            }
+
+            img {
+                width: calc(100% - 10px);
+            }
+        }
+    }
+}
