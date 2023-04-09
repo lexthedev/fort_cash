@@ -1,3 +1,161 @@
+import A_shout from './SVG/A_shout.svg';
+import Address from './SVG/Address.svg';
+import Basket from './SVG/Basket.svg';
+import Cloud from './SVG/Cloud.svg';
+import Dollar from './SVG/Dollar.svg';
+import Flag from './SVG/Flag.svg';
+import Like from './SVG/Like.svg';
+import Phone_2 from './SVG/Phone_2.svg';
+import Settings from './SVG/Settings.svg';
+import Bell from './SVG/Bell.svg';
+import Comment from './SVG/Comment.svg';
+import Download from './SVG/Download.svg';
+import Folder from './SVG/Folder.svg';
+import Lock_2 from './SVG/Lock_2.svg';
+import Phone from './SVG/Phone.svg';
+import Sharing from './SVG/Sharing.svg';
+import Avatar from './SVG/Avatar.svg';
+import Box from './SVG/Box.svg';
+import Compare from './SVG/Compare.svg';
+import Calendar from './SVG/Calendar.svg';
+import Forward_2 from './SVG/Forward_2.svg';
+import Lock from './SVG/Lock.svg';
+import Plus from './SVG/Plus.svg';
+import The_envelope from './SVG/The_envelope.svg';
+import Back_2 from './SVG/Back_2.svg';
+import Camera from './SVG/Camera.svg';
+import Cursor from './SVG/Cursor.svg';
+import Enable from './SVG/Enable.svg';
+import Forward from './SVG/Forward.svg';
+import Menu from './SVG/Menu.svg';
+import Printer from './SVG/Printer.svg';
+import Update from './SVG/Update.svg';
+import Back from './SVG/Back.svg';
+import Clock from './SVG/Clock.svg';
+import Delivery from './SVG/Delivery.svg';
+import Entry from './SVG/Entry.svg';
+import Garbage from './SVG/Garbage.svg';
+import Option from './SVG/Option.svg';
+import Purse from './SVG/Purse.svg';
+import Ways_of_payment from './SVG/Ways_of_payment.svg';
+import Basket_2 from './SVG/Basket_2.svg';
+import Close from './SVG/Close.svg';
+import Dislike from './SVG/Dislike.svg';
+import Filter from './SVG/Filter.svg';
+import Heart from './SVG/Heart.svg';
+import Page from './SVG/Page.svg';
+import Search from './SVG/Search.svg';
+import Write from './SVG/Write.svg';
+import { FunctionComponent } from 'react';
+
+interface IIconProps {
+    className?: string;
+    viewBox?: string;
+}
+
+export const Icons = {
+    // A_shout_test: A_shout as React.DetailedHTMLProps<React.SVGProps<SVGSVGElement>>,
+    // A_shout_test: (props: IIconProps) => <A_shout className={props.className} viewbox={props.viewBox} fill={'#000000'} /> as React.ReactElement,
+
+    A_shout: (props: IIconProps) => { const { className, viewBox } = props; return (<A_shout className={className} viewBox={viewBox} />) },
+    Address: (props: IIconProps) => { const { className, viewBox } = props; return (<Address className={className} viewBox={viewBox} />) },
+    Basket: (props: IIconProps) => { const { className, viewBox } = props; return (<Basket className={className} viewBox={viewBox} />) },
+    Cloud: (props: IIconProps) => { const { className, viewBox } = props; return (<Cloud className={className} viewBox={viewBox} />) },
+    Dollar: (props: IIconProps) => { const { className, viewBox } = props; return (<Dollar className={className} viewBox={viewBox} />) },
+    Flag: (props: IIconProps) => { const { className, viewBox } = props; return (<Flag className={className} viewBox={viewBox} />) },
+    Like: (props: IIconProps) => { const { className, viewBox } = props; return (<Like className={className} viewBox={viewBox} />) },
+    Phone_2: (props: IIconProps) => { const { className, viewBox } = props; return (<Phone_2 className={className} viewBox={viewBox} />) },
+    Settings: (props: IIconProps) => { const { className, viewBox } = props; return (<Settings className={className} viewBox={viewBox} />) },
+    Bell: (props: IIconProps) => { const { className, viewBox } = props; return (<Bell className={className} viewBox={viewBox} />) },
+    Comment: (props: IIconProps) => { const { className, viewBox } = props; return (<Comment className={className} viewBox={viewBox} />) },
+    Download: (props: IIconProps) => { const { className, viewBox } = props; return (<Download className={className} viewBox={viewBox} />) },
+    Folder: (props: IIconProps) => { const { className, viewBox } = props; return (<Folder className={className} viewBox={viewBox} />) },
+    Lock_2: (props: IIconProps) => { const { className, viewBox } = props; return (<Lock_2 className={className} viewBox={viewBox} />) },
+    Phone: (props: IIconProps) => { const { className, viewBox } = props; return (<Phone className={className} viewBox={viewBox} />) },
+    Sharing: (props: IIconProps) => { const { className, viewBox } = props; return (<Sharing className={className} viewBox={viewBox} />) },
+    Avatar: (props: IIconProps) => { const { className, viewBox } = props; return (<Avatar className={className} viewBox={viewBox} />) },
+    Box: (props: IIconProps) => { const { className, viewBox } = props; return (<Box className={className} viewBox={viewBox} />) },
+    Compare: (props: IIconProps) => { const { className, viewBox } = props; return (<Compare className={className} viewBox={viewBox} />) },
+    Calendar: (props: IIconProps) => { const { className, viewBox } = props; return (<Calendar className={className} viewBox={viewBox} />) },
+    Forward_2: (props: IIconProps) => { const { className, viewBox } = props; return (<Forward_2 className={className} viewBox={viewBox} />) },
+    Lock: (props: IIconProps) => { const { className, viewBox } = props; return (<Lock className={className} viewBox={viewBox} />) },
+    Plus: (props: IIconProps) => { const { className, viewBox } = props; return (<Plus className={className} viewBox={viewBox} />) },
+    The_envelope: (props: IIconProps) => { const { className, viewBox } = props; return (<The_envelope className={className} viewBox={viewBox} />) },
+    Back_2: (props: IIconProps) => { const { className, viewBox } = props; return (<Back_2 className={className} viewBox={viewBox} />) },
+    Camera: (props: IIconProps) => { const { className, viewBox } = props; return (<Camera className={className} viewBox={viewBox} />) },
+    Cursor: (props: IIconProps) => { const { className, viewBox } = props; return (<Cursor className={className} viewBox={viewBox} />) },
+    Enable: (props: IIconProps) => { const { className, viewBox } = props; return (<Enable className={className} viewBox={viewBox} />) },
+    Forward: (props: IIconProps) => { const { className, viewBox } = props; return (<Forward className={className} viewBox={viewBox} />) },
+    Menu: (props: IIconProps) => { const { className, viewBox } = props; return (<Menu className={className} viewBox={viewBox} />) },
+    Printer: (props: IIconProps) => { const { className, viewBox } = props; return (<Printer className={className} viewBox={viewBox} />) },
+    Update: (props: IIconProps) => { const { className, viewBox } = props; return (<Update className={className} viewBox={viewBox} />) },
+    Back: (props: IIconProps) => { const { className, viewBox } = props; return (<Back className={className} viewBox={viewBox} />) },
+    Clock: (props: IIconProps) => { const { className, viewBox } = props; return (<Clock className={className} viewBox={viewBox} />) },
+    Delivery: (props: IIconProps) => { const { className, viewBox } = props; return (<Delivery className={className} viewBox={viewBox} />) },
+    Entry: (props: IIconProps) => { const { className, viewBox } = props; return (<Entry className={className} viewBox={viewBox} />) },
+    Garbage: (props: IIconProps) => { const { className, viewBox } = props; return (<Garbage className={className} viewBox={viewBox} />) },
+    Option: (props: IIconProps) => { const { className, viewBox } = props; return (<Option className={className} viewBox={viewBox} />) },
+    Purse: (props: IIconProps) => { const { className, viewBox } = props; return (<Purse className={className} viewBox={viewBox} />) },
+    Ways_of_payment: (props: IIconProps) => { const { className, viewBox } = props; return (<Ways_of_payment className={className} viewBox={viewBox} />) },
+    Basket_2: (props: IIconProps) => { const { className, viewBox } = props; return (<Basket_2 className={className} viewBox={viewBox} />) },
+    Close: (props: IIconProps) => { const { className, viewBox } = props; return (<Close className={className} viewBox={viewBox} />) },
+    Dislike: (props: IIconProps) => { const { className, viewBox } = props; return (<Dislike className={className} viewBox={viewBox} />) },
+    Filter: (props: IIconProps) => { const { className, viewBox } = props; return (<Filter className={className} viewBox={viewBox} />) },
+    Heart: (props: IIconProps) => { const { className, viewBox } = props; return (<Heart className={className} viewBox={viewBox} />) },
+    Page: (props: IIconProps) => { const { className, viewBox } = props; return (<Page className={className} viewBox={viewBox} />) },
+    Search: (props: IIconProps) => { const { className, viewBox } = props; return (<Search className={className} viewBox={viewBox} />) },
+    Write: (props: IIconProps) => { const { className, viewBox } = props; return (<Write className={className} viewBox={viewBox} />) }
+}
+
+// export { ReactComponent as A_shout } from './SVG/A_shout.svg';
+// export { ReactComponent as Address } from './SVG/Address.svg';
+// export { ReactComponent as Basket } from './SVG/Basket.svg';
+// export { ReactComponent as Cloud } from './SVG/Cloud.svg';
+// export { ReactComponent as Dollar } from './SVG/Dollar.svg';
+// export { ReactComponent as Flag } from './SVG/Flag.svg';
+// export { ReactComponent as Like } from './SVG/Like.svg';
+// export { ReactComponent as Phone_2 } from './SVG/Phone_2.svg';
+// export { ReactComponent as Settings } from './SVG/Settings.svg';
+// export { ReactComponent as Bell } from './SVG/Bell.svg';
+// export { ReactComponent as Comment } from './SVG/Comment.svg';
+// export { ReactComponent as Download } from './SVG/Download.svg';
+// export { ReactComponent as Folder } from './SVG/Folder.svg';
+// export { ReactComponent as Lock_2 } from './SVG/Lock_2.svg';
+// export { ReactComponent as Phone } from './SVG/Phone.svg';
+// export { ReactComponent as Sharing } from './SVG/Sharing.svg';
+// export { ReactComponent as Avatar } from './SVG/Avatar.svg';
+// export { ReactComponent as Box } from './SVG/Box.svg';
+// export { ReactComponent as Compare } from './SVG/Compare.svg';
+// export { ReactComponent as Calendar } from './SVG/Calendar.svg';
+// export { ReactComponent as Forward_2 } from './SVG/Forward_2.svg';
+// export { ReactComponent as Lock } from './SVG/Lock.svg';
+// export { ReactComponent as Plus } from './SVG/Plus.svg';
+// export { ReactComponent as The_envelope } from './SVG/The_envelope.svg';
+// export { ReactComponent as Back_2 } from './SVG/Back_2.svg';
+// export { ReactComponent as Camera } from './SVG/Camera.svg';
+// export { ReactComponent as Cursor } from './SVG/Cursor.svg';
+// export { ReactComponent as Enable } from './SVG/Enable.svg';
+// export { ReactComponent as Forward } from './SVG/Forward.svg';
+// export { ReactComponent as Menu } from './SVG/Menu.svg';
+// export { ReactComponent as Printer } from './SVG/Printer.svg';
+// export { ReactComponent as Update } from './SVG/Update.svg';
+// export { ReactComponent as Back } from './SVG/Back.svg';
+// export { ReactComponent as Clock } from './SVG/Clock.svg';
+// export { ReactComponent as Delivery } from './SVG/Delivery.svg';
+// export { ReactComponent as Entry } from './SVG/Entry.svg';
+// export { ReactComponent as Garbage } from './SVG/Garbage.svg';
+// export { ReactComponent as Option } from './SVG/Option.svg';
+// export { ReactComponent as Purse } from './SVG/Purse.svg';
+// export { ReactComponent as Ways_of_payment } from './SVG/Ways_of_payment.svg';
+// export { ReactComponent as Basket_2 } from './SVG/Basket_2.svg';
+// export { ReactComponent as Close } from './SVG/Close.svg';
+// export { ReactComponent as Dislike } from './SVG/Dislike.svg';
+// export { ReactComponent as Filter } from './SVG/Filter.svg';
+// export { ReactComponent as Heart } from './SVG/Heart.svg';
+// export { ReactComponent as Page } from './SVG/Page.svg';
+// export { ReactComponent as Search } from './SVG/Search.svg';
+// export { ReactComponent as Write } from './SVG/Write.svg';
+
 // export const A_shout = './SVG/A_shout.svg';
 // export const Address = './SVG/Address.svg';
 // export const Basket = './SVG/Basket.svg';
@@ -48,109 +206,109 @@
 // export const Write = './SVG/Write.svg';
 
 
-import A_shout from './SVG/A_shout.svg'
-import Address from './SVG/Address.svg'
-import Basket from './SVG/Basket.svg'
-import Cloud from './SVG/Cloud.svg'
-import Dollar from './SVG/Dollar.svg'
-import Flag from './SVG/Flag.svg'
-import Like from './SVG/Like.svg'
-import Phone_2 from './SVG/Phone_2.svg'
-import Settings from './SVG/Settings.svg'
-import Bell from './SVG/Bell.svg'
-import Comment from './SVG/Comment.svg'
-import Download from './SVG/Download.svg'
-import Folder from './SVG/Folder.svg'
-import Lock_2 from './SVG/Lock_2.svg'
-import Phone from './SVG/Phone.svg'
-import Sharing from './SVG/Sharing.svg'
-import Avatar from './SVG/Avatar.svg'
-import Box from './SVG/Box.svg'
-import Compare from './SVG/Compare.svg'
-import Calendar from './SVG/Calendar.svg'
-import Forward_2 from './SVG/Forward_2.svg'
-import Lock from './SVG/Lock.svg'
-import Plus from './SVG/Plus.svg'
-import The_envelope from './SVG/The_envelope.svg'
-import Back_2 from './SVG/Back_2.svg'
-import Camera from './SVG/Camera.svg'
-import Cursor from './SVG/Cursor.svg'
-import Enable from './SVG/Enable.svg'
-import Forward from './SVG/Forward.svg'
-import Menu from './SVG/Menu.svg'
-import Printer from './SVG/Printer.svg'
-import Update from './SVG/Update.svg'
-import Back from './SVG/Back.svg'
-import Clock from './SVG/Clock.svg'
-import Delivery from './SVG/Delivery.svg'
-import Entry from './SVG/Entry.svg'
-import Garbage from './SVG/Garbage.svg'
-import Option from './SVG/Option.svg'
-import Purse from './SVG/Purse.svg'
-import Ways_of_payment from './SVG/Ways_of_payment.svg'
-import Basket_2 from './SVG/Basket_2.svg'
-import Close from './SVG/Close.svg'
-import Dislike from './SVG/Dislike.svg'
-import Filter from './SVG/Filter.svg'
-import Heart from './SVG/Heart.svg'
-import Page from './SVG/Page.svg'
-import Search from './SVG/Search.svg'
-import Write from './SVG/Write.svg'
+// import A_shout from './SVG/A_shout.svg'
+// import Address from './SVG/Address.svg'
+// import Basket from './SVG/Basket.svg'
+// import Cloud from './SVG/Cloud.svg'
+// import Dollar from './SVG/Dollar.svg'
+// import Flag from './SVG/Flag.svg'
+// import Like from './SVG/Like.svg'
+// import Phone_2 from './SVG/Phone_2.svg'
+// import Settings from './SVG/Settings.svg'
+// import Bell from './SVG/Bell.svg'
+// import Comment from './SVG/Comment.svg'
+// import Download from './SVG/Download.svg'
+// import Folder from './SVG/Folder.svg'
+// import Lock_2 from './SVG/Lock_2.svg'
+// import Phone from './SVG/Phone.svg'
+// import Sharing from './SVG/Sharing.svg'
+// import Avatar from './SVG/Avatar.svg'
+// import Box from './SVG/Box.svg'
+// import Compare from './SVG/Compare.svg'
+// import Calendar from './SVG/Calendar.svg'
+// import Forward_2 from './SVG/Forward_2.svg'
+// import Lock from './SVG/Lock.svg'
+// import Plus from './SVG/Plus.svg'
+// import The_envelope from './SVG/The_envelope.svg'
+// import Back_2 from './SVG/Back_2.svg'
+// import Camera from './SVG/Camera.svg'
+// import Cursor from './SVG/Cursor.svg'
+// import Enable from './SVG/Enable.svg'
+// import Forward from './SVG/Forward.svg'
+// import Menu from './SVG/Menu.svg'
+// import Printer from './SVG/Printer.svg'
+// import Update from './SVG/Update.svg'
+// import Back from './SVG/Back.svg'
+// import Clock from './SVG/Clock.svg'
+// import Delivery from './SVG/Delivery.svg'
+// import Entry from './SVG/Entry.svg'
+// import Garbage from './SVG/Garbage.svg'
+// import Option from './SVG/Option.svg'
+// import Purse from './SVG/Purse.svg'
+// import Ways_of_payment from './SVG/Ways_of_payment.svg'
+// import Basket_2 from './SVG/Basket_2.svg'
+// import Close from './SVG/Close.svg'
+// import Dislike from './SVG/Dislike.svg'
+// import Filter from './SVG/Filter.svg'
+// import Heart from './SVG/Heart.svg'
+// import Page from './SVG/Page.svg'
+// import Search from './SVG/Search.svg'
+// import Write from './SVG/Write.svg'
 
-export const Icons = [
-    A_shout,
-    Address,
-    Basket,
-    Cloud,
-    Dollar,
-    Flag,
-    Like,
-    Phone_2,
-    Settings,
-    Bell,
-    Comment,
-    Download,
-    Folder,
-    Lock_2,
-    Phone,
-    Sharing,
-    Avatar,
-    Box,
-    Compare,
-    Calendar,
-    Forward_2,
-    Lock,
-    Plus,
-    The_envelope,
-    Back_2,
-    Camera,
-    Cursor,
-    Enable,
-    Forward,
-    Menu,
-    Printer,
-    Update,
-    Back,
-    Clock,
-    Delivery,
-    Entry,
-    Garbage,
-    Option,
-    Purse,
-    Ways_of_payment,
-    Basket_2,
-    Close,
-    Dislike,
-    Filter,
-    Heart,
-    Page,
-    Search,
-    Write,
-]
+// export const Icons = [
+//     A_shout,
+//     Address,
+//     Basket,
+//     Cloud,
+//     Dollar,
+//     Flag,
+//     Like,
+//     Phone_2,
+//     Settings,
+//     Bell,
+//     Comment,
+//     Download,
+//     Folder,
+//     Lock_2,
+//     Phone,
+//     Sharing,
+//     Avatar,
+//     Box,
+//     Compare,
+//     Calendar,
+//     Forward_2,
+//     Lock,
+//     Plus,
+//     The_envelope,
+//     Back_2,
+//     Camera,
+//     Cursor,
+//     Enable,
+//     Forward,
+//     Menu,
+//     Printer,
+//     Update,
+//     Back,
+//     Clock,
+//     Delivery,
+//     Entry,
+//     Garbage,
+//     Option,
+//     Purse,
+//     Ways_of_payment,
+//     Basket_2,
+//     Close,
+//     Dislike,
+//     Filter,
+//     Heart,
+//     Page,
+//     Search,
+//     Write,
+// ]
 
-// import styles from './styles/category.module.scss'
+// // import styles from './styles/category.module.scss'
 
-// export function A_shout_Icon() { return (<img src={A_shout} alt='' />) };
+// export function A_shout_Icon() { return (<A_shout />) };
 // export function Address_Icon() { return (<Address />) };
 // export function Basket_Icon() { return (<Basket />) };
 // export function Cloud_Icon() { return (<Cloud />) };

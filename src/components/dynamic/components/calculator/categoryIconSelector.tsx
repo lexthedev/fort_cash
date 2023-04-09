@@ -1,6 +1,7 @@
 import { ICategoryIconSelector } from "@/components";
 import { Icons } from "../../../../../public/static/img/categories";
 import styles from "../../styles/categoryIconSelector.module.scss"
+import React from 'react';
 
 export default function CategoryIconSelector(props: ICategoryIconSelector) {
 
@@ -13,14 +14,14 @@ export default function CategoryIconSelector(props: ICategoryIconSelector) {
         select icon below:&nbsp;
         <div className={styles.iconSelector}>
             <div className={styles.iconSet}>
-                {Icons.map(({ src }) => {
+                {Object.keys(Icons).map((icon: string) => {
                     return (
                         <div
-                            className={`${styles.icon} ${selected === src ? styles.selected : ''}`}
-                            key={src}
-                            onClick={() => handleSelect(src)}
+                            className={`${styles.icon} ${selected === icon ? styles.selected : ''}`}
+                            key={icon}
+                            onClick={() => handleSelect(icon)}
                         >
-                            <img src={src} />
+                            {Icons[icon as keyof typeof Icons]({ className: styles.icon, viewBox: '0 0 50 50' })}
                         </div>
                     )
                 })}

@@ -9,6 +9,14 @@
         gap: 5px;
         margin: 10px;
 
+        // .cls-1 {
+        //     fill: #FFFFFF !important
+        // }
+
+        // .cls-2 {
+        //     fill: #00c569 !important
+        // }
+
         .icon {
             background-color: #888888;
             width: 35px;
@@ -22,11 +30,24 @@
             &.selected {
                 background-color: #cccccc;
                 border: 1px solid #aaaaaa;
+
+                svg {
+                    width: 100%;
+                }
             }
 
-            img {
+            svg {
                 width: calc(100% - 10px);
+
+                path:nth-child(odd) {
+                    fill: #FFFFFF !important
+                }
+
+                path:nth-child(even) {
+                    fill: #00c569 !important
+                }
             }
+
         }
     }
 }
