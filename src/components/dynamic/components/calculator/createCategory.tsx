@@ -4,7 +4,7 @@ import { useAppDispatch } from "@/redux";
 import { categorySlice } from "@/redux/reducers/categoryReducer";
 import React from "react";
 import { ChangeEvent, useState } from "react";
-import CategoryIconSelector from "./calculator/categoryIconSelector";
+import CategoryIconSelector from "./categoryIconSelector";
 
 export function CreateCategory(props: ICategoryCreateForm) {
 

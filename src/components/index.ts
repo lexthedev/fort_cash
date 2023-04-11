@@ -1,8 +1,10 @@
 export * from "./dynamic/components/dynamicHead";
 export * from "./dynamic/components/dynamicBody";
 export * from "./dynamic/components/popup";
-export * from "./dynamic/components/transferInput";
-export * from "./dynamic/components/createCategory";
+export * from "./dynamic/components/calculator/transferInput";
+export * from "./dynamic/components/calculator/createCategory";
+export * from "./dynamic/components/calculator/editCategory";
+export * from "./dynamic/components/calculator/category";
 export * from "./dynamic/components/popUpActionButtons";
 export * from "./dynamic/components/calculator/categoryIconSelector";
 

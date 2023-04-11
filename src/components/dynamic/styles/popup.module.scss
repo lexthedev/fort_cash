@@ -15,6 +15,11 @@
         position: absolute;
         padding: 20px;
         border-radius: 10px;
+        border: 1px solid grey;
+        // display: inline-block;
+        border-radius: 5px;
+        min-width: 10px;
+        min-height: 10px;
         z-index: 11;
 
         .content {
@@ -22,15 +27,44 @@
         }
 
         .title {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto 30px;
+            // justify-content: space-between;
 
             .close {
-                border: 1px solid grey;
-                // display: inline-block;
+                content: "&nbsp;";
+                // border: 1px solid grey;
+                cursor: pointer;
+                position: relative;
                 border-radius: 5px;
-                min-width: 10px;
-                min-height: 10px;
+                min-width: 21px;
+                width: 21px;
+                min-height: 21px;
+                height: 21px;
+
+                &:after {
+                    display: block;
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 21px;
+                    background-color: white;
+                    left: 50%;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(45deg);
+                }
+
+                &::before {
+                    display: block;
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 21px;
+                    background-color: white;
+                    left: 50%;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(135deg);
+                }
             }
         }
     }

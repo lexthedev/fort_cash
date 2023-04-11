@@ -23,11 +23,44 @@ export const categorySlice = createSlice({
     reducers: {
         createCategory(state, action: PayloadAction<ICategory>) {
             const { type } = action.payload;
-            state.categories[type].push(action.payload);
+            const newId = String(state.categories[type].length);
+            const newCategory = { ...action.payload, id: newId };
+            const newCategories = { ...state.categories };
+            newCategories[type].push(newCategory);
+            // state.categories[type].push(newCategory);
 
             const savePayload: IPayload = {
                 name: 'categories',
-                data: state.categories
+                data: newCategories
+            }
+
+            LocalStoreService.SaveToStore(savePayload)
+        }, updateCategory(state, action: PayloadAction<ICategory>) {
+            const { type, id } = action.payload;
+            const newCategories = { ...state.categories }
+            const newCategoriesOfType = newCategories[type].map((cat) => {
+                return cat.id === id ? action.payload : cat;
+            });
+            newCategories[type] = newCategoriesOfType;
+
+            const savePayload: IPayload = {
+                name: 'categories',
+                data: newCategories
+            }
+
+            LocalStoreService.SaveToStore(savePayload)
+        }, deleteCategory(state, action: PayloadAction<ICategory>) {
+            const { type, id } = action.payload;
+            const newCategories = { ...state.categories }
+            const newCategoriesOfType = newCategories[type].filter((cat) => cat.id !== id);
+            newCategories[type] = newCategoriesOfType;
+            // const newCategories = state.categories[type].map((cat) => {
+            //     if (cat.id !== id) return cat;
+            // });
+
+            const savePayload: IPayload = {
+                name: 'categories',
+                data: newCategories
             }
 
             LocalStoreService.SaveToStore(savePayload)
