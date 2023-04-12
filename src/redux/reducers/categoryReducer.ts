@@ -23,15 +23,22 @@ export const categorySlice = createSlice({
     reducers: {
         createCategory(state, action: PayloadAction<ICategory>) {
             const { type } = action.payload;
-            const newId = String(state.categories[type].length);
+            // const newId = String(state.categories[type].length);
+            const categories = state.categories[type];
+            const catLength = categories.length;
+            const newId = String(categories[catLength - 1]);
             const newCategory = { ...action.payload, id: newId };
             const newCategories = { ...state.categories };
             newCategories[type].push(newCategory);
-            // state.categories[type].push(newCategory);
 
             const savePayload: IPayload = {
                 name: 'categories',
                 data: newCategories
+            }
+
+            state.categories = {
+                ...state.categories,
+                ...newCategories
             }
 
             LocalStoreService.SaveToStore(savePayload)
@@ -46,6 +53,11 @@ export const categorySlice = createSlice({
             const savePayload: IPayload = {
                 name: 'categories',
                 data: newCategories
+            }
+
+            state.categories = {
+                ...state.categories,
+                ...newCategories
             }
 
             LocalStoreService.SaveToStore(savePayload)
@@ -63,6 +75,11 @@ export const categorySlice = createSlice({
                 data: newCategories
             }
 
+            state.categories = {
+                ...state.categories,
+                ...newCategories
+            }
+
             LocalStoreService.SaveToStore(savePayload)
         },
         setCategories(state, action: PayloadAction<CategoryState>) {
@@ -70,9 +87,6 @@ export const categorySlice = createSlice({
                 ...state.categories,
                 ...action.payload
             }
-
-            console.log('new state', state.categories);
-
         }
     }
 })

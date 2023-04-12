@@ -1,4 +1,4 @@
-import { CreateCategory, EditCategory, DynamicBody, DynamicHead, ICategory, Popup, Category } from "@/components"
+import { CreateCategory, EditCategory, DynamicBody, DynamicHead, ICategory, Popup, Category, CategoryList } from "@/components"
 import { transferTypes } from "@/constants/transferTypes";
 import { useAppDispatch, useAppSelector } from "@/redux"
 import { useEffect, useState } from "react";
@@ -18,15 +18,21 @@ export default function Categories() {
 
     const content = (
         <div className={styles.content}>
-            <h3>income</h3>
-            <div>
-                {income.map(cat => <Category key={cat.title} onClick={() => { setEditingCategory(cat) }} {...cat} />)}
-                <button onClick={() => setCreatingCategory(transferTypes.income)}>add new</button>
+            <div className={styles.title}>
+                <h3 className={styles.header}>income</h3>
+                <div className={styles.add} onClick={() => setCreatingCategory(transferTypes.income)}>+</div>
             </div>
-            <h3>outcome</h3>
             <div>
-                {outcome.map(cat => <Category key={cat.title} onClick={() => { setEditingCategory(cat) }} {...cat} />)}
-                <button onClick={() => setCreatingCategory(transferTypes.outcome)}>add new</button>
+                {<CategoryList categories={income} onClick={setEditingCategory} />}
+                {/* <button onClick={() => setCreatingCategory(transferTypes.income)}>add new</button> */}
+            </div>
+            <div className={styles.title}>
+                <h3 className={styles.header}>outcome</h3>
+                <div className={styles.add} onClick={() => setCreatingCategory(transferTypes.outcome)}>+</div>
+            </div>
+            <div>
+                {<CategoryList categories={outcome} onClick={setEditingCategory} />}
+                {/* <button onClick={() => setCreatingCategory(transferTypes.outcome)}>add new</button> */}
             </div>
         </div>);
 
@@ -47,7 +53,7 @@ export default function Categories() {
             </Popup>}
         {editingCategory &&
             <Popup
-                onClose={() => setCreatingCategory(false)}
+                onClose={() => setEditingCategory(false)}
                 title={title}>
                 <EditCategory
                     editingCategory={!!editingCategory ? editingCategory as ICategory : undefined}

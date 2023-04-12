@@ -1,6 +1,6 @@
 import { ICategoryIconSelector } from "@/components";
-import { Icons } from "../../../../../public/static/img/categories";
-import styles from "../../styles/categoryIconSelector.module.scss"
+import { Icons } from "../../../../../../public/static/img/categories";
+import styles from "../../../styles/categoryIconSelector.module.scss"
 import React from 'react';
 
 export default function CategoryIconSelector(props: ICategoryIconSelector) {
@@ -21,7 +21,7 @@ export default function CategoryIconSelector(props: ICategoryIconSelector) {
                             key={icon}
                             onClick={() => handleSelect(icon)}
                         >
-                            {Icons[icon as keyof typeof Icons]({ className: styles.icon, viewBox: '0 0 50 50' })}
+                            {Icons[icon as keyof typeof Icons]({ className: styles.icon, viewBox: '0 0 60 60' })}
                         </div>
                     )
                 })}

@@ -1,0 +1,27 @@
+.category {
+    cursor: pointer;
+    background-color: #888888;
+    padding: 5px;
+    border-radius: 5px;
+    width: 75px;
+    height: 85px;
+
+    .icon {
+        width: 35px;
+        height: 35px;
+
+        path:nth-child(odd) {
+            fill: #FFFFFF !important
+        }
+
+        path:nth-child(even) {
+            fill: #00c569 !important
+        }
+    }
+
+    .title {
+        word-break: break-all;
+        overflow: hidden;
+        color: #111111;
+    }
+}
