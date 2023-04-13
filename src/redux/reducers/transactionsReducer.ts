@@ -20,7 +20,9 @@ export const transactionSlice = createSlice({
     initialState,
     reducers: {
         addTransaction(state, action: PayloadAction<Transaction>) {
-            state.transactions.push(action.payload);
+            const newId = Number(state.transactions.slice(-1)[0]?.id || 0) + 1;
+            const newTransaction = { ...action.payload, id: String(newId) }
+            state.transactions.push(newTransaction);
             const savePayload: IPayload = {
                 name: 'transactions',
                 data: state.transactions

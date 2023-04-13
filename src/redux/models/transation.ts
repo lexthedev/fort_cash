@@ -1,7 +1,8 @@
 import { transferTypes } from "@/constants/transferTypes";
 
 export interface Transaction {
+    id?: string
     amount: number;
-    category: string;
+    categoryId: string;
     type: transferTypes;
 }

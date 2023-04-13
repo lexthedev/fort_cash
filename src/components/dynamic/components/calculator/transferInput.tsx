@@ -11,7 +11,7 @@ export const TransferInput = (props: ITransferInput) => {
     const { incrementIncome, incrementSpent } = balanceSlice.actions;
     const { addTransaction } = transactionSlice.actions;
     const { income, outcome } = useAppSelector(state => state.categoryReducer.categories);
-    
+
     const dispatch = useAppDispatch();
 
     function close() {
@@ -23,7 +23,7 @@ export const TransferInput = (props: ITransferInput) => {
         if (value && value > 0) {
             dispatch(addTransaction({
                 amount: value,
-                category: category as string,
+                categoryId: category as string,
                 type: type
             }))
 
@@ -81,7 +81,7 @@ export const TransferInput = (props: ITransferInput) => {
                 <select onChange={(e) => setCategory(e.target.value)}
                     name="TransferInput-input-category"
                     id="TransferInput-input-category">
-                    {categories.map(({ title }) => <option key={title} value={title}>{title}</option>)}
+                    {categories.map(({ title, id }) => <option key={id} value={id}>{title}</option>)}
                 </select>
             </div>
         </div>
