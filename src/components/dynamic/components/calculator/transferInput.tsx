@@ -1,6 +1,6 @@
 import { ITransferInput } from "@/components";
 import { transferTypes } from "@/constants/transferTypes";
-import { balanceSlice, transactionSlice, useAppDispatch, useAppSelector } from "@/redux";
+import { balanceSlice, messageSlice, transactionSlice, useAppDispatch, useAppSelector } from "@/redux";
 import { useState } from "react";
 
 export const TransferInput = (props: ITransferInput) => {
@@ -10,6 +10,7 @@ export const TransferInput = (props: ITransferInput) => {
     const [category, setCategory] = useState<string>();
     const { incrementIncome, incrementSpent } = balanceSlice.actions;
     const { addTransaction } = transactionSlice.actions;
+    const { addMessage } = messageSlice.actions;
     const { income, outcome } = useAppSelector(state => state.categoryReducer.categories);
 
     const dispatch = useAppDispatch();
@@ -42,7 +43,11 @@ export const TransferInput = (props: ITransferInput) => {
 
             close();
         } else {
-
+            dispatch(addMessage({
+                header: 'transactions error',
+                text: 'you have to enter amount > 0',
+                type: 'error'
+            }))
         }
     }
 

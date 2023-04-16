@@ -19,7 +19,7 @@ export const transactionSlice = createSlice({
     name: 'balanceSlice',
     initialState,
     reducers: {
-        addTransaction(state, action: PayloadAction<Transaction>) {
+        addTransaction(state: TransactionState, action: PayloadAction<Transaction>) {
             const newId = Number(state.transactions.slice(-1)[0]?.id || 0) + 1;
             const newTransaction = { ...action.payload, id: String(newId) }
             state.transactions.push(newTransaction);
@@ -30,7 +30,7 @@ export const transactionSlice = createSlice({
 
             LocalStoreService.SaveToStore(savePayload)
         },
-        setTransactions(state, action: PayloadAction<Transaction[]>) {
+        setTransactions(state: TransactionState, action: PayloadAction<Transaction[]>) {
             if (!!action.payload) {
                 state.transactions = [
                     ...state.transactions,

@@ -1,6 +1,6 @@
 import { ICategoryIconSelector } from "@/components";
 import { Icons } from "../../../../../../public/static/img/categories";
-import styles from "../../../styles/categoryIconSelector.module.scss"
+import styles from "@/components/dynamic/styles/category/categoryIconSelector.module.scss"
 import React from 'react';
 
 export default function CategoryIconSelector(props: ICategoryIconSelector) {

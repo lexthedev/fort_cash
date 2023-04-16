@@ -18,10 +18,15 @@ export function CreateCategory(props: ICategoryCreateForm) {
     const { createCategory } = categorySlice.actions;
     const dispatch = useAppDispatch();
 
-    function createNewCategory(event: MouseEvent) {
-        event.preventDefault();
-        dispatch(createCategory(category));
-        onClose();
+    function createNewCategory(event?: MouseEvent) {
+        event?.preventDefault();
+        const { title, type, picture } = category;
+        if (!!title && !!type && !!picture) {
+            dispatch(createCategory(category));
+            onClose();
+        } else {
+            alert(`Need to select:${!title ? ' title' : ''}${!type ? ' type' : ''}${!picture ? ' picture' : ''}`)
+        }
     }
 
     function handleInput(e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) {
@@ -37,8 +42,7 @@ export function CreateCategory(props: ICategoryCreateForm) {
     function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {
         switch (event.key) {
             case 'Enter':
-                dispatch(createCategory(category));
-                onClose();
+                createNewCategory();
                 break;
 
             case 'Escape':

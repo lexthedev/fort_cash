@@ -49,14 +49,15 @@ export default function Calculator() {
         <DynamicHead />
         <DynamicBody>
             {content}
+            {currentTransfer &&
+                <Popup
+                    onClose={() => setCurrentTransfer(false)}
+                    title={`New ${currentTransfer}`}>
+                    <TransferInput
+                        type={currentTransfer as transferTypes}
+                        onClose={() => setCurrentTransfer(false)} />
+                </Popup>}
         </DynamicBody>
-        {currentTransfer &&
-            <Popup
-                onClose={() => setCurrentTransfer(false)}
-                title={`New ${currentTransfer}`}>
-                <TransferInput
-                    type={currentTransfer as transferTypes}
-                    onClose={() => setCurrentTransfer(false)} />
-            </Popup>}
+
     </>
 };

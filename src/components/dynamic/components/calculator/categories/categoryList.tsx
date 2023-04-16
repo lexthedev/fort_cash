@@ -1,5 +1,5 @@
 import { Category, ICategoryList } from "@/components"
-import styles from '../../../styles/categoryList.module.scss'
+import styles from '@/components/dynamic/styles/category/categoryList.module.scss'
 
 export function CategoryList(props: ICategoryList) {
 
@@ -8,7 +8,7 @@ export function CategoryList(props: ICategoryList) {
         {categories.map(cat => {
             const { id, title, picture } = cat;
             return <Category
-                key={`${id}_${title}`}
+                key={`${id}`}
                 onClick={() => { onClick(cat); }}
                 title={title}
                 picture={picture} />

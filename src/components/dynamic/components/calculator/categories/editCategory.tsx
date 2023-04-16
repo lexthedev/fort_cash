@@ -19,14 +19,19 @@ export function EditCategory(props: ICategoryCreateForm) {
     const { updateCategory, deleteCategory } = categorySlice.actions;
     const dispatch = useAppDispatch();
 
-    function updateCurrentCategory(event: MouseEvent) {
-        event.preventDefault();
-        dispatch(updateCategory(category));
-        onClose();
+    function updateCurrentCategory(event?: MouseEvent) {
+        event?.preventDefault();
+        const { title, type, picture } = category;
+        if (!!title && !!type && !!picture) {
+            dispatch(updateCategory(category));
+            onClose();
+        } else {
+            alert(`Need to select:${!title ? ' title' : ''}${!type ? ' type' : ''}${!picture ? ' picture' : ''}`)
+        }
     }
 
-    function deleteCurrentCategory(event: MouseEvent) {
-        event.preventDefault();
+    function deleteCurrentCategory(event?: MouseEvent) {
+        event?.preventDefault();
         dispatch(deleteCategory(category));
         onClose();
     }

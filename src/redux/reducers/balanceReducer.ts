@@ -20,13 +20,13 @@ export const balanceSlice = createSlice({
     name: 'balanceSlice',
     initialState,
     reducers: {
-        incrementIncome(state, action: PayloadAction<number>) {
+        incrementIncome(state: BalanceState, action: PayloadAction<number>) {
             state.wallet.income += action.payload;
         },
-        incrementSpent(state, action: PayloadAction<number>) {
+        incrementSpent(state: BalanceState, action: PayloadAction<number>) {
             state.wallet.spent += action.payload;
         },
-        setBalance(state, action: PayloadAction<IWalletState>) {
+        setBalance(state: BalanceState, action: PayloadAction<IWalletState>) {
             state.wallet = action.payload;
         }
     }

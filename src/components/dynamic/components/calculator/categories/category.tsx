@@ -1,5 +1,5 @@
 import { Icons } from "../../../../../../public/static/img/categories";
-import styles from "../../../styles/category.module.scss";
+import styles from "@/components/dynamic/styles/category/category.module.scss";
 
 interface ICategoryElement {
     title: string;
@@ -10,7 +10,7 @@ interface ICategoryElement {
 export function Category(props: ICategoryElement) {
     const { title, picture, onClick } = props;
     return <div className={styles.category} onClick={!!onClick ? onClick : undefined}>
-        {Icons[picture as keyof typeof Icons]({ className: styles.icon, viewBox: '0 0 60 60' })}
+        {!!picture && Icons[picture as keyof typeof Icons]({ className: styles.icon, viewBox: '0 0 60 60' })}
         <div className={styles.title}>{title}</div>
     </div>
 }

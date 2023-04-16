@@ -21,28 +21,29 @@ export const categorySlice = createSlice({
     name: 'categorySlice',
     initialState,
     reducers: {
-        createCategory(state, action: PayloadAction<ICategory>) {
+        createCategory(state: CategoryState, action: PayloadAction<ICategory>) {
             const { type } = action.payload;
             // const newId = String(state.categories[type].length);
             const categories = state.categories[type];
-            const catLength = categories.length;
-            const newId = String(categories[catLength - 1]);
-            const newCategory = { ...action.payload, id: newId };
-            const newCategories = { ...state.categories };
-            newCategories[type].push(newCategory);
+            // const catLength = categories.length;
+            const newId = Number(state.categories[type].slice(-1)[0]?.id || 0) + 1;
+            const newCategory = { ...action.payload, id: String(newId) };
+            state.categories[type].push(newCategory)
+            // const newCategories = { ...state.categories };
+            // newCategories[type].push(newCategory);
 
             const savePayload: IPayload = {
                 name: 'categories',
-                data: newCategories
+                data: state.categories
             }
 
-            state.categories = {
-                ...state.categories,
-                ...newCategories
-            }
+            // state.categories = {
+            //     ...state.categories,
+            //     ...newCategories
+            // }
 
-            LocalStoreService.SaveToStore(savePayload)
-        }, updateCategory(state, action: PayloadAction<ICategory>) {
+            if (state.categories[type].length > 0) LocalStoreService.SaveToStore(savePayload);
+        }, updateCategory(state: CategoryState, action: PayloadAction<ICategory>) {
             const { type, id } = action.payload;
             const newCategories = { ...state.categories }
             const newCategoriesOfType = newCategories[type].map((cat) => {
@@ -61,7 +62,7 @@ export const categorySlice = createSlice({
             }
 
             LocalStoreService.SaveToStore(savePayload)
-        }, deleteCategory(state, action: PayloadAction<ICategory>) {
+        }, deleteCategory(state: CategoryState, action: PayloadAction<ICategory>) {
             const { type, id } = action.payload;
             const newCategories = { ...state.categories }
             const newCategoriesOfType = newCategories[type].filter((cat) => cat.id !== id);
@@ -82,7 +83,7 @@ export const categorySlice = createSlice({
 
             LocalStoreService.SaveToStore(savePayload)
         },
-        setCategories(state, action: PayloadAction<CategoryState>) {
+        setCategories(state: CategoryState, action: PayloadAction<CategoryState>) {
             state.categories = {
                 ...state.categories,
                 ...action.payload
