@@ -5,7 +5,6 @@ import styles from "@/components/dynamic/styles/messages/messages.module.scss";
 export function Message(props: IMessage) {
     const { header, text, type, dateTimeId, timeout } = props;
     const { removeMessage } = messageSlice.actions;
-    // const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
     const dispatch = useAppDispatch();
 
     function removeCurrentMessage() {
@@ -14,7 +13,7 @@ export function Message(props: IMessage) {
 
     useEffect(() => {
         const to = setTimeout(() => {
-            // removeCurrentMessage()
+            removeCurrentMessage()
         }, timeout as number * 1000)
     }, [])
 

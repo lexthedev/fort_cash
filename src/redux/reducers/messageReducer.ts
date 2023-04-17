@@ -23,7 +23,7 @@ export const messageSlice = createSlice({
                 ...action.payload,
                 dateTimeId: String(Date.now())
             }
-            state.messages.push(newMessage)
+            state.messages.unshift(newMessage)
         },
         removeMessage(state: MessageState, action: PayloadAction<string>) {
             const messages = state.messages;

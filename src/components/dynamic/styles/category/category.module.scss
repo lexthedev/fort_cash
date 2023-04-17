@@ -6,6 +6,26 @@
     width: 75px;
     height: 85px;
 
+    &.selected {
+        padding: 5px;
+        background-color: #DDDDDD;
+
+        .icon {
+
+                path:nth-child(odd) {
+                    fill: #000000 !important
+                }
+
+                path:nth-child(even) {
+                    fill: #00c569 !important
+                }
+            }
+
+        .title {
+            color: #000000
+        }
+    }
+
     .icon {
         width: 35px;
         height: 35px;
@@ -22,6 +42,7 @@
     .title {
         word-break: break-all;
         overflow: hidden;
-        color: #111111;
+        // color: #111111;
+        color: #FFFFFF;
     }
 }

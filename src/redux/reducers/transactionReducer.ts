@@ -1,18 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Transaction } from "..";
+import { Transaction, Transactions } from "..";
 import { IPayload } from "../models/localStorePayload";
 import { LocalStoreService } from "../services/localStoreService";
 
 interface TransactionState {
-    transactions: Transaction[]
-    isLoading: boolean;
-    error: any | any[];
+    transactions: Transactions;
+    lastId: string;
+    // c: Transaction[]
+    // isLoading: boolean;
+    // error: any | any[];
 }
 
 const initialState: TransactionState = {
-    transactions: [] as Transaction[],
-    isLoading: false,
-    error: null
+    transactions: {},
+    lastId: '0',
+    //     isLoading: false,
+    //     error: null
+}
+
+
+function saveToStore(state: TransactionState) {
+    const savePayload: IPayload = {
+        name: 'transactions',
+        data: state.transactions
+    }
+
+    LocalStoreService.SaveToStore(savePayload)
 }
 
 export const transactionSlice = createSlice({
@@ -20,22 +33,38 @@ export const transactionSlice = createSlice({
     initialState,
     reducers: {
         addTransaction(state: TransactionState, action: PayloadAction<Transaction>) {
-            const newId = Number(state.transactions.slice(-1)[0]?.id || 0) + 1;
-            const newTransaction = { ...action.payload, id: String(newId) }
-            state.transactions.push(newTransaction);
-            const savePayload: IPayload = {
-                name: 'transactions',
-                data: state.transactions
-            }
+            // const newId = Number(state.transactions.slice(-1)[0]?.id || 0) + 1;
+            // const newTransaction = { ...action.payload, id: String(newId) }
+            // state.transactions.push(newTransaction);
+            const newId = String(Number(state.lastId) + 1);
+            state.transactions[newId] = { ...action.payload, id: newId };
+            state.lastId = newId;
 
-            LocalStoreService.SaveToStore(savePayload)
+            saveToStore(state);
         },
-        setTransactions(state: TransactionState, action: PayloadAction<Transaction[]>) {
+        editTransaction(state: TransactionState, action: PayloadAction<Transaction>) {
+            const { id } = action.payload;
+            state.transactions[id as string] = action.payload;
+
+            saveToStore(state);
+        },
+        removeTransaction(state: TransactionState, action: PayloadAction<string>) {
+            delete state.transactions[action.payload];
+
+            saveToStore(state);
+        },
+        setTransactions(state: TransactionState, action: PayloadAction<Transactions>) {
+            // console.log('state.transactions', ...state.transactions);
+            // console.log('action.payload', action.payload);
+
+
             if (!!action.payload) {
-                state.transactions = [
-                    ...state.transactions,
-                    ...action.payload
-                ];
+                const { payload } = action;
+                Object.keys(payload).forEach((apKey) => {
+                    state.transactions[apKey] = payload[apKey];
+                    const apKeyNumber = Number(apKey);
+                    if (apKeyNumber > Number(state.lastId)) state.lastId = apKey;
+                })
             }
         }
     }

@@ -7,7 +7,7 @@ export function DynamicBody(props: IDynamicBody) {
 
     return <div className={styles.body}>
         <SideMenu />
-        <div>
+        <div className={styles.mainContent}>
             {children}
         </div>
         <Footer />

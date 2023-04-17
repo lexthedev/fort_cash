@@ -6,3 +6,7 @@ export interface Transaction {
     categoryId: string;
     type: transferTypes;
 }
+
+export interface Transactions {
+    [id: string]: Transaction
+}

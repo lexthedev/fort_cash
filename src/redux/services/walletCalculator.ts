@@ -1,12 +1,13 @@
 import { transferTypes } from "@/constants/transferTypes";
-import { IWalletState, Transaction } from "..";
+import { IWalletState, Transaction, Transactions } from "..";
 
 export default abstract class WalletCalculator {
-    public static countBalance(transactions: Transaction[]): IWalletState {
+    public static countBalance(transactions: Transactions): IWalletState {
         let income = 0;
         let spent = 0;
 
-        transactions.forEach(transaction => {
+        Object.keys(transactions).forEach(tkey => {
+            const transaction = transactions[tkey]
             switch (transaction.type) {
                 case transferTypes.income:
                     income += transaction.amount

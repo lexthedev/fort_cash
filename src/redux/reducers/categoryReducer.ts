@@ -84,6 +84,11 @@ export const categorySlice = createSlice({
             LocalStoreService.SaveToStore(savePayload)
         },
         setCategories(state: CategoryState, action: PayloadAction<CategoryState>) {
+            // console.log('state.income', state.categories.income.length);
+            // console.log('state.outcome', state.categories.outcome.length);
+            // console.log('action.income', action.payload.categories.income);
+            // console.log('action.outcome', action.payload.categories.outcome);
+            // console.log('action.payload', action.payload);
             state.categories = {
                 ...state.categories,
                 ...action.payload

@@ -5,12 +5,14 @@ import balanceReduser from "../reducers/balanceReducer"
 import transactionsReducer from "../reducers/transactionReducer"
 import categoryReducer from "../reducers/categoryReducer"
 import messageReducer from "../reducers/messageReducer"
+import popupReducer from "../reducers/popupReducer"
 
 const rootReducer = combineReducers({
   balanceReduser,
   transactionsReducer,
   categoryReducer,
-  messageReducer
+  messageReducer,
+  popupReducer
 })
 
 export const setupStore = () => {

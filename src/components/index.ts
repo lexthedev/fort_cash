@@ -18,7 +18,7 @@ export * from "./static/components/sideMenu";
 
 export * from "./interfaces/dynamicHead";
 export * from "./interfaces/dynamicBody";
-export * from "./interfaces/popup";
+export * from "../redux/models/popup";
 export * from "./interfaces/transferInput";
 export * from "./interfaces/category";
 export * from "./interfaces/categoryCreate";
