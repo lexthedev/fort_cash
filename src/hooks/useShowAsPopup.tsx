@@ -6,12 +6,10 @@ function useShowAsPopup() {
     const dispatch = useAppDispatch();
 
     return (props: IPopup) => {
-        // const popup = props;
         const { addPopup, removePopup } = popupSlice.actions;
         const onClose = props.onClose; // TODO does it work?
         props.onClose = () => { removePopup; onClose };
         dispatch(addPopup(props));
-        // setState(true)
     }
 }
 

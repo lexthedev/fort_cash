@@ -2,11 +2,11 @@ import { IPopup } from "@/components";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PopupState {
-    popup: IPopup | null;
+    popups: IPopup[];
 }
 
 const initialState: PopupState = {
-    popup: null,
+    popups: [],
 }
 
 export const popupSlice = createSlice({
@@ -14,10 +14,11 @@ export const popupSlice = createSlice({
     initialState,
     reducers: {
         addPopup(state: PopupState, action: PayloadAction<IPopup>) {
-            state.popup = action.payload;
+            const newPopup = { ...action.payload, dateTimeId: Date.now }
+            state.popups?.push(newPopup);
         },
         removePopup(state: PopupState) {
-            state.popup = null;
+            state.popups = [];
         }
     }
 })

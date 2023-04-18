@@ -52,8 +52,6 @@ export const TransferInput = (props: ITransferInput) => {
             }))
         }
 
-
-
         switch (type) {
             case transferTypes.income:
                 dispatch(incrementIncome(value))
@@ -90,10 +88,6 @@ export const TransferInput = (props: ITransferInput) => {
                 break;
         }
     }
-
-    console.log(transaction?.id);
-    console.log(transaction);
-
 
     const categories = type === transferTypes.income ? income : outcome;
 

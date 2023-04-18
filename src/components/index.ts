@@ -3,7 +3,6 @@ export * from "./dynamic/components/dynamicBody";
 export * from "./dynamic/components/popup";
 export * from "./dynamic/components/popUpActionButtons";
 export * from "./dynamic/components/calculator/transferInput";
-export * from "./dynamic/components/calculator/categories/createCategory";
 export * from "./dynamic/components/calculator/categories/editCategory";
 export * from "./dynamic/components/calculator/categories/category";
 export * from "./dynamic/components/calculator/categories/categoryIconSelector";

@@ -1,6 +1,6 @@
 import { ICategory, ICategoryCreateForm, PopUpAction } from "@/components";
 import { transferTypes } from "@/constants/transferTypes";
-import { useAppDispatch } from "@/redux";
+import { messageSlice, useAppDispatch } from "@/redux";
 import { categorySlice } from "@/redux/reducers/categoryReducer";
 import React from "react";
 import { ChangeEvent, useState } from "react";
@@ -8,39 +8,72 @@ import CategoryIconSelector from "./categoryIconSelector";
 
 export function EditCategory(props: ICategoryCreateForm) {
 
-    const { onClose, editingCategory } = props;
-    const [category, setCategory] = useState<ICategory>(
+    const { onClose, category, type } = props;
+    const [editingCategory, setEditingCategory] = useState<ICategory>(
         {
-            id: editingCategory?.id as string,
-            title: editingCategory?.title as string,
-            type: editingCategory?.type as transferTypes,
-            picture: editingCategory?.picture as string
+            id: category?.id as string,
+            title: category?.title as string,
+            type: category?.type as transferTypes || type,
+            picture: category?.picture as string
         });
-    const { updateCategory, deleteCategory } = categorySlice.actions;
+    const { createCategory, updateCategory, deleteCategory } = categorySlice.actions;
+    const { addMessage } = messageSlice.actions;
     const dispatch = useAppDispatch();
 
-    function updateCurrentCategory(event?: MouseEvent) {
-        event?.preventDefault();
-        const { title, type, picture } = category;
-        if (!!title && !!type && !!picture) {
-            dispatch(updateCategory(category));
-            onClose();
-        } else {
-            alert(`Need to select:${!title ? ' title' : ''}${!type ? ' type' : ''}${!picture ? ' picture' : ''}`)
-        }
+    function close() {
+        !!onClose && onClose();
     }
 
-    function deleteCurrentCategory(event?: MouseEvent) {
+    function save(event?: MouseEvent) {
         event?.preventDefault();
-        dispatch(deleteCategory(category));
-        onClose();
+        const { title, type, picture } = editingCategory;
+
+        if (!title) {
+            dispatch(addMessage({
+                header: 'category error',
+                text: 'you have to enter title',
+                type: 'error'
+            }))
+            return;
+        }
+        if (!type) {
+            dispatch(addMessage({
+                header: 'category error',
+                text: 'you have to enter type',
+                type: 'error'
+            }))
+            return;
+        }
+        if (!picture) {
+            dispatch(addMessage({
+                header: 'category error',
+                text: 'you have to enter picture',
+                type: 'error'
+            }))
+            return;
+        }
+
+        if (category) {
+            console.log(editingCategory);
+
+            dispatch(updateCategory(editingCategory));
+        } else {
+            dispatch(createCategory(editingCategory));
+        }
+        close();
+    }
+
+    function remove(event?: MouseEvent) {
+        event?.preventDefault();
+        dispatch(deleteCategory(editingCategory));
+        close();
     }
 
     function handleInput(e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) {
         const field = e.target.name;
         const value = e.target.value;
-        setCategory({
-            ...category,
+        setEditingCategory({
+            ...editingCategory,
             [field]: value
         })
 
@@ -49,12 +82,11 @@ export function EditCategory(props: ICategoryCreateForm) {
     function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {
         switch (event.key) {
             case 'Enter':
-                dispatch(updateCategory(category));
-                onClose();
+                save()
                 break;
 
             case 'Escape':
-                onClose()
+                close()
                 break;
 
             default:
@@ -63,8 +95,8 @@ export function EditCategory(props: ICategoryCreateForm) {
     }
 
     function handleSelectIcon(src: string) {
-        setCategory({
-            ...category,
+        setEditingCategory({
+            ...editingCategory,
             picture: src
         })
     }
@@ -73,15 +105,15 @@ export function EditCategory(props: ICategoryCreateForm) {
         <div>
             <label>
                 enter name:&nbsp;
-                <input defaultValue={editingCategory?.title} type="text" name="title" onChange={(e) => handleInput(e)} />
+                <input defaultValue={category?.title} type="text" name="title" onChange={(e) => handleInput(e)} autoFocus />
             </label>
         </div>
-        <div>
+        {!type && !category && <div>
             <label>
                 enter type:&nbsp;
                 <select
                     name="type"
-                    defaultValue={editingCategory ? editingCategory?.type : '-'}
+                    defaultValue={'-'}
                     onChange={(e) => handleInput(e)}
                 >
                     <option value="-" disabled>-</option>
@@ -92,11 +124,11 @@ export function EditCategory(props: ICategoryCreateForm) {
                     ))}
                 </select>
             </label>
-        </div>
-        <CategoryIconSelector onSelect={handleSelectIcon} selected={category.picture} />
+        </div>}
+        <CategoryIconSelector onSelect={handleSelectIcon} selected={editingCategory.picture} />
         <PopUpAction
-            onSubmit={(e) => updateCurrentCategory(e)}
-            onDelete={(e) => deleteCurrentCategory(e)}
-            onCancel={() => onClose()} />
+            onSubmit={(e) => save(e)}
+            onDelete={category ? (e) => remove(e) : undefined}
+            onCancel={() => close()} />
     </div>
 }

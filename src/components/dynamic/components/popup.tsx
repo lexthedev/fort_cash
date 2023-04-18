@@ -1,7 +1,7 @@
 import { IPopup } from '@/components';
 import { useAppDispatch } from '@/redux';
 import { popupSlice } from '@/redux/reducers/popupReducer';
-import React from 'react';
+import React, { cloneElement } from 'react';
 import styles from '../styles/popup.module.scss'
 
 export function Popup(props: IPopup) {
@@ -26,6 +26,16 @@ export function Popup(props: IPopup) {
         }
     }
 
+    function onChildrenClose() {
+        const { onClose } = children.props;
+        onClose && onClose();
+        dispatch(removePopup())
+    }
+
+    const enchancedChildren = cloneElement(children, {
+        ...children.props, onClose: onChildrenClose
+    })
+
     return <div
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => handlePress(e)}
         onClick={close}
@@ -36,7 +46,7 @@ export function Popup(props: IPopup) {
                 <h3>{title}</h3>
                 <div className={styles.close} onClick={close}></div>
             </div>
-            <div className={styles.content}>{children}</div>
+            <div className={styles.content}>{enchancedChildren}</div>
         </div>
     </div>
 }
