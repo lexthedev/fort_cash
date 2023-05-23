@@ -14,11 +14,12 @@ export const popupSlice = createSlice({
     initialState,
     reducers: {
         addPopup(state: PopupState, action: PayloadAction<IPopup>) {
-            const newPopup = { ...action.payload, dateTimeId: Date.now }
+            const newPopup = { ...action.payload, dateTimeId: String(Date.now()) }
             state.popups?.push(newPopup);
         },
-        removePopup(state: PopupState) {
-            state.popups = [];
+        removePopup(state: PopupState, action: PayloadAction<string>) {
+            const { payload: id } = action;
+            state.popups = state.popups.filter(pop => pop.dateTimeId !== id);
         }
     }
 })

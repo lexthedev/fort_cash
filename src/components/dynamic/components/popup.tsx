@@ -6,13 +6,15 @@ import styles from '../styles/popup.module.scss'
 
 export function Popup(props: IPopup) {
 
-    const { title, children, onClose } = props;
-    const dispatch = useAppDispatch();
-    const { removePopup } = popupSlice.actions;
+    const { title, children, onClose, dateTimeId } = props;
+    // const dispatch = useAppDispatch();
+    // const { removePopup } = popupSlice.actions;
 
     function close() {
+        console.log('end');
+
         !!onClose && onClose()
-        dispatch(removePopup())
+        // dispatch(removePopup(dateTimeId as string))
     }
 
     function handlePress(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -27,9 +29,10 @@ export function Popup(props: IPopup) {
     }
 
     function onChildrenClose() {
-        const { onClose } = children.props;
-        onClose && onClose();
-        dispatch(removePopup())
+        const { onClose: childrenOnClose } = children.props;
+        !!onClose && onClose()
+        !!childrenOnClose && childrenOnClose();
+        // dispatch(removePopup(dateTimeId as string))
     }
 
     const enchancedChildren = cloneElement(children, {

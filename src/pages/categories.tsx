@@ -1,4 +1,4 @@
-import { CreateCategory, EditCategory, DynamicBody, DynamicHead, ICategory, Popup, Category, CategoryList, IPopup } from "@/components"
+import { EditCategory, DynamicBody, DynamicHead, ICategory, Popup, Category, CategoryList, IPopup } from "@/components"
 import { transferTypes } from "@/constants/transferTypes";
 import useShowAsPopup from "@/hooks/useShowAsPopup";
 import { useAppDispatch, useAppSelector } from "@/redux"
@@ -8,7 +8,9 @@ import styles from "./styles/categories.module.scss"
 
 export default function Categories() {
 
-    const setPopUp = useShowAsPopup();
+    // const { addPopup } = useShowAsPopup();
+    const { addPopup, popups } = useShowAsPopup();
+
     const { income, outcome } = useAppSelector(state => state.categoryReducer.categories);
 
     function showPopup(type: transferTypes, category?: ICategory) {
@@ -20,7 +22,7 @@ export default function Categories() {
                 type={type}
                 category={category} />
         }
-        setPopUp(popup);
+        addPopup(popup);
     }
     function editCategory(category: ICategory) {
         console.log(category);
@@ -49,7 +51,7 @@ export default function Categories() {
 
     return <>
         <DynamicHead />
-        <DynamicBody>
+        <DynamicBody popups={popups}>
             {content}
         </DynamicBody>
     </>

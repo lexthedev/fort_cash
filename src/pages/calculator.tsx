@@ -7,7 +7,7 @@ import { DynamicBody, DynamicHead, ICategory, IPopup, Popup, TransferInput } fro
 
 export default function Calculator() {
 
-    const setPopUp = useShowAsPopup();
+    // const { addPopup } = useShowAsPopup();
     const { transactions } = useAppSelector(state => state.transactionsReducer)
     const { categories } = useAppSelector(state => state.categoryReducer)
     const { income, spent } = WalletCalculator.countBalance(transactions);
@@ -17,6 +17,8 @@ export default function Calculator() {
         return chosenCategories.find(({ id: _id }) => _id === id)
     }
 
+    const { addPopup, popups } = useShowAsPopup();
+
     function showTransfer(type: transferTypes, transaction?: Transaction) {
         const popup: IPopup = {
             title: `New ${type}`,
@@ -24,7 +26,7 @@ export default function Calculator() {
                 type={type}
                 transaction={transaction} />
         }
-        setPopUp(popup);
+        addPopup(popup);
     }
 
     const content = <>
@@ -49,9 +51,8 @@ export default function Calculator() {
 
     return <>
         <DynamicHead />
-        <DynamicBody>
+        <DynamicBody popups={popups}>
             {content}
         </DynamicBody>
-
     </>
 };
